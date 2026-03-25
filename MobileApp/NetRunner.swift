@@ -74,21 +74,15 @@ class NetRunner:NSObject
         //使用示例 call C Language Interface
         calculatorRef = createMathCalculator(12.1)
         
+        // ===== 使用具体类型对象指针的示例 =====
+        // 1. 创建 Person 对象（具体类型）
         personRef = createPerson()
         setPersonName(personRef,String("Swift String").cString(using: String.Encoding.utf8))
         
         let swiftName = String(cString: getName(personRef));
         self.person_name = swiftName
-        
-        guard personRef != nil  else{
-            print("aaaa")
-            return
-        }
-         
-        guard let optPointer = personRef else{
-            return
-        }
-        
+
+        // 2. 直接访问结构体成员
         if let person = personRef{
             person.pointee.age = 1
             person.pointee.height = 10
@@ -96,7 +90,15 @@ class NetRunner:NSObject
         }
         
         
+        guard personRef != nil  else{
+            return
+        }
+         
+        guard let optPointer = personRef else{
+            return
+        }
         setPersonName(optPointer,"Swift_name")
+        
         
         print("code excuting...")
     }
