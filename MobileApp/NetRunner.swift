@@ -89,6 +89,13 @@ class NetRunner:NSObject
             return
         }
         
+        if let person = personRef{
+            person.pointee.age = 1
+            person.pointee.height = 10
+            setPersonName(personRef, "Swift")
+        }
+        
+        
         setPersonName(optPointer,"Swift_name")
         
         print("code excuting...")
